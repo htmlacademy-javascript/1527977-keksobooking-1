@@ -1,5 +1,40 @@
-// Создайте новый модуль и опишите в нём функции взаимодействия c
-// удалённым сервером с помощью fetch для получения и отправки данных.
-// Актуальный адрес сервера вы найдёте в техзадании.
+import { BASE_URL, Route, Method, ErrorText } from './constants.js';
 
-// Подключите модуль в проект.
+const getData = async (onSuccess, onFail) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}${Route.GET_DATA}`,
+    );
+
+    if (!response.ok) {
+      throw new Error(ErrorText.GET_DATA);
+    }
+
+    const offers = await response.json();
+    onSuccess(offers);
+  } catch (error) {
+    onFail(error.message);
+  }
+};
+
+const sendData = async (onSuccess, onFail, body) => {
+  try {
+    const response = await fetch(
+      BASE_URL,
+      {
+        method: Method.POST,
+        body,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(ErrorText.SEND_DATA);
+    }
+
+    onSuccess();
+  } catch (error) {
+    onFail(error.message);
+  }
+};
+
+export { getData, sendData };

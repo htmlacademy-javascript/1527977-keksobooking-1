@@ -1,4 +1,4 @@
-import { blockElement } from './util.js';
+import { toggleClass, blockElement } from './util.js';
 
 const form = document.querySelector('.ad-form');
 const formElements = form.querySelectorAll('fieldset');
@@ -7,12 +7,12 @@ const filtersElements = filters.querySelectorAll('select, fieldset');
 // Слайдер также должен быть заблокирован ad-form__slider;
 
 const lockoutForm = () => {
-  form.classList.toggle('ad-form--disabled');
+  toggleClass(form, 'ad-form--disabled');
   blockElement(formElements);
 };
 
 const lockoutFilters = () => {
-  filters.classList.toggle('map__filters--disabled');
+  toggleClass(filters, 'map__filters--disabled');
   blockElement(filtersElements);
 };
 

@@ -1,8 +1,3 @@
-// Напишите код, который добавит на карту метки объявлений, «обычные».
-//  Иконка для метки находится в директории /img в корне проекта, файл pin.svg.
-// //  Для отображения используйте данные для разработки,
-// которые мы генерировали несколько заданий назад.
-
 // С помощью API карт реализуйте показ балуна с подробной информацией об объявлении.
 // Учтите нюансы поведения и ограничения для обычных меток и главной.
 
@@ -26,6 +21,8 @@ L.tileLayer(
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   },
 ).addTo(map);
+
+export { map };
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
@@ -71,3 +68,20 @@ marker.on('moveend', (evt) => {
 //   }, 16);
 // });
 
+// const rentPinIcon = L.icon({
+//   iconUrl: './img/pin.svg',
+//   iconSize: [40, 40],
+//   iconAnchor: [20, 40],
+// });
+
+// ADVERTISMENT.forEach(({lat, lng}) => {
+//   const markerRent = L.marker({
+//     lat,
+//     lng,
+//   },
+//   {
+//     icon: rentPinIcon,
+//   },
+//   );
+//   markerRent.addTo(map);
+// });

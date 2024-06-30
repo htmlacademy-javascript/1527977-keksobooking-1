@@ -1,6 +1,13 @@
 import './map.js';
 import './form.js';
 import { lockoutPage, lockoutFilters } from './application.js';
+import { getData } from './api.js';
+import { errorLoadingNotice } from './notice.js';
+// import './photoLoader.js';
+// import { renderPhotos } from './renderPhotos.js';
+// import { setOnFilterClick, turnFilterOn, filterPhotos } from './filters.js';
+
+const form = document.querySelector('.ad-form');
 
 lockoutPage();
 
@@ -11,4 +18,16 @@ lockoutPage();
 // Фильтровать объявления;
 // Уточнять подробную информацию об объявлениях, показывая для каждого карточку.
 
-lockoutFilters();
+// const onGetDataSuccess = (data) => {
+
+const onGetDataSuccess = () => {
+  if(!form.classList.contains('ad-form--disabled')) {
+    lockoutFilters();
+  }
+  // console.log(data);
+  // turnFilterOn(data);
+  // renderPhotos(filterPhotos());
+  // setOnFilterClick(renderPhotos);
+};
+
+getData(onGetDataSuccess, errorLoadingNotice);
