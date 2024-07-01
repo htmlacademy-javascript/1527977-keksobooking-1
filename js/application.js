@@ -4,7 +4,7 @@ const form = document.querySelector('.ad-form');
 const formElements = form.querySelectorAll('fieldset');
 const filters = document.querySelector('.map__filters');
 const filtersElements = filters.querySelectorAll('select, fieldset');
-// Слайдер также должен быть заблокирован ad-form__slider;
+const slider = document.querySelector('.ad-form__slider');
 
 const lockoutForm = () => {
   toggleClass(form, 'ad-form--disabled');
@@ -19,6 +19,7 @@ const lockoutFilters = () => {
 const lockoutPage = () => {
   lockoutForm();
   lockoutFilters();
+  blockElement(slider);
 };
 
 export { lockoutPage, lockoutForm, lockoutFilters };
