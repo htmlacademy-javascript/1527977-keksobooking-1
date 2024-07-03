@@ -4,9 +4,15 @@ const blockElement = (element) => {
   });
 };
 
+const getNumber = (data, sign) => Number(data.toFixed(sign));
+
 const toggleClass = (element, targetClass) => {
   element.classList.toggle(`${targetClass}`);
 };
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const isElementInFocus = (element) => element === document.activeElement;
 
 function debounce (callback, timeoutDelay = 500) {
   let timeoutId;
@@ -16,4 +22,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export { toggleClass, blockElement, debounce };
+export { toggleClass, blockElement, isElementInFocus, getNumber, isEscapeKey, debounce };

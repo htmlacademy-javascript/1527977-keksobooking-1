@@ -1,7 +1,8 @@
 import { sendData } from './api.js';
 import { showSuccessNotice, showErrorNotice } from './notice.js';
-import { FILE_TYPES, ButtonStatus } from './constants.js';
+import { StartAddress, SIGN_RAUND, FILE_TYPES, ButtonStatus } from './constants.js';
 import { pristine } from './validation.js';
+import { getNumber } from './util.js';
 
 const form = document.querySelector('.ad-form');
 const address = form.querySelector('#address');
@@ -13,13 +14,17 @@ const imgImages = form.querySelector('.ad-form__photo');
 
 address.readOnly = true;
 
+address.value = `${getNumber(StartAddress.LAT, SIGN_RAUND)}, ${getNumber(StartAddress.LNG, SIGN_RAUND)}`;
+
 const renderPhoto = (input, image) => {
   const file = input.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
     const srcName = URL.createObjectURL(file);
-    image.tagName === 'IMG' ? image.src = srcName : image.style.backgroundImage = `url(${srcName})`;
+    if(image.tagName === 'IMG') {
+      image.src = srcName;
+    } image.style.backgroundImage = `url(${srcName})`;
   }
 };
 

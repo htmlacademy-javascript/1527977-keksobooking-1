@@ -1,12 +1,15 @@
-import { lockoutForm } from './application.js';
+import { StartAddress, SIGN_RAUND } from './constants.js';
+import { getNumber } from './util.js';
 
-const form = document.querySelector('.ad-form');
-const address = form.querySelector('#address');
+const address = document.querySelector('#address');
+
+// const map = L.map('map-canvas')
+//   .on('load', () => {
+//     lockoutForm();
+//   })
+//   .setView({
 
 const map = L.map('map-canvas')
-  .on('load', () => {
-    lockoutForm();
-  })
   .setView({
     lat: 35.681729,
     lng: 139.753927,
@@ -19,8 +22,6 @@ L.tileLayer(
   },
 ).addTo(map);
 
-export { map };
-
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
   iconSize: [52, 52],
@@ -29,8 +30,8 @@ const mainPinIcon = L.icon({
 
 const marker = L.marker(
   {
-    lat: 35.681729,
-    lng: 139.753927,
+    lat: StartAddress.LAT,
+    lng: StartAddress.LNG,
   },
   {
     draggable: true,
@@ -40,6 +41,21 @@ const marker = L.marker(
 
 marker.addTo(map);
 
-marker.on('moveend', (evt) => {
-  address.value = evt.target.getLatLng();
+let coordinates;
+
+function onMarkerMoveEnd(evt) {
+  const latlng = evt.target.getLatLng();
+  coordinates = `${getNumber(latlng.lat, SIGN_RAUND)}, ${getNumber(latlng.lng, SIGN_RAUND)}`;
+  address.value = coordinates;
+}
+
+new Promise(() => {
+  marker.on('moveend', onMarkerMoveEnd);
 });
+
+const getMap = new Promise(() => {
+  map.on('load', () => {
+  });
+});
+
+export { getMap };

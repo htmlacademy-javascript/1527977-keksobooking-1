@@ -1,7 +1,7 @@
+export const SIGN_RAUND = 5;
 export const MAX_PRICE = 100000;
 export const BASE_URL = 'https://28.javascript.htmlacademy.pro/keksobooking';
 export const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp'];
-
 
 export const Route = {
   GET_DATA: '/data',
@@ -34,3 +34,7 @@ export const ButtonStatus = {
   SENDING: 'Публикую...'
 };
 
+export const StartAddress = {
+  LAT: 35.681729,
+  LNG: 139.753927,
+};
