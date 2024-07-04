@@ -1,10 +1,10 @@
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
-const cardsContainer = document.querySelector('.map');
+// const cardsContainer = document.querySelector('.map');
 
 const localCards = [];
 
 const renderCards = (data) => {
-  cardsContainer.querySelectorAll('.popup').forEach((element) => element.remove());
+  // cardsContainer.querySelectorAll('.popup').forEach((element) => element.remove());
   localCards.length = 0;
   localCards.push(...data.slice());
   const cardFragment = document.createDocumentFragment();
@@ -17,7 +17,7 @@ const renderCards = (data) => {
 
     cardFragment.appendChild(card);
   });
-  cardsContainer.appendChild(cardFragment);
+  // cardsContainer.appendChild(cardFragment);
 };
 
 export { renderCards };
