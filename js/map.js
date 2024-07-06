@@ -53,6 +53,8 @@ const getMap = new Promise(() => {
   });
 });
 
+const markerGroup = L.layerGroup().addTo(map);
+
 const icon = L.icon({
   iconUrl: './img/pin.svg',
   iconSize: [40, 40],
@@ -71,8 +73,10 @@ const createMarker = (card) => {
   );
 
   marker
-    .addTo(map)
+    .addTo(markerGroup)
     .bindPopup(createPopup(card));
 };
 
-export { getMap, mainMarker, createMarker };
+const clearMarkers = () => markerGroup.clearLayers();
+
+export { getMap, mainMarker, createMarker, clearMarkers };
