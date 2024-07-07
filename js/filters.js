@@ -1,10 +1,18 @@
-const getFilterElements = (filterForm) => ({
-  filterTypeSelect: filterForm.querySelector('#housing-type'),
-  filterPriceSelect: filterForm.querySelector('#housing-price'),
-  filterRoomsSelect: filterForm.querySelector('#housing-rooms'),
-  filterGuestsSelect: filterForm.querySelector('#housing-guests'),
-  filterFeaturesCheckboxes: filterForm.querySelectorAll('#housing-features input')
-});
+const getFilterElements = (form) => {
+  const filterTypeSelect = form.querySelector('#housing-type');
+  const filterPriceSelect = form.querySelector('#housing-price');
+  const filterRoomsSelect = form.querySelector('#housing-rooms');
+  const filterGuestsSelect = form.querySelector('#housing-guests');
+  const filterFeaturesCheckboxes = Array.from(form.querySelectorAll('#housing-features input'));
+
+  return {
+    filterTypeSelect,
+    filterPriceSelect,
+    filterRoomsSelect,
+    filterGuestsSelect,
+    filterFeaturesCheckboxes
+  };
+};
 
 const getSelectedFilters = (filterElements) => {
   const {
@@ -41,7 +49,7 @@ const filterByFilters = ({ type, price, rooms, guests, features }) => (card) => 
   const priceMatch = price === 'any' || getFilteredPrice(card.offer.price) === price;
   const roomsMatch = rooms === 'any' || +card.offer.rooms === +rooms;
   const guestsMatch = guests === 'any' || +card.offer.guests === +guests;
-  const featuresMatch = features.every((feature) => card.offer.features.includes(feature));
+  const featuresMatch = features.length === 0 || features.every((feature) => card.offer?.features?.includes(feature));
 
   return typeMatch && priceMatch && roomsMatch && guestsMatch && featuresMatch;
 };
