@@ -1,6 +1,6 @@
 import { sendData } from './api.js';
 import { showSuccessNotice, showErrorNotice } from './notice.js';
-import { StartAddress, SIGN_RAUND, FILE_TYPES, ButtonStatus } from './constants.js';
+import { StartAddress, SIGN_RAUND, FILE_TYPES, ButtonStatus, MIN_PRICE } from './constants.js';
 import { pristine } from './validation.js';
 import { getNumber } from './util.js';
 import { mainMarker } from './map.js';
@@ -13,6 +13,10 @@ const imgAvatar = form.querySelector('.ad-form-header__preview > img');
 const uploadImages = form.querySelector('#images');
 const imgImages = form.querySelector('.ad-form__photo');
 const buttonReset = form.querySelector('.ad-form__reset');
+const typeHousing = form.querySelector('#type');
+const price = form.querySelector('#price');
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
 
 address.readOnly = true;
 
@@ -72,3 +76,19 @@ buttonReset.addEventListener('click', (evt) => {
   });
   address.value = addressValueSrart;
 });
+
+typeHousing.addEventListener('change', () => {
+  price.placeholder = MIN_PRICE[typeHousing.value];
+});
+
+const synchronizationTime = (evt) => {
+  const selectedTime = `${evt.target.value.slice(0, 2)}:00`;
+  if (evt.target.id === 'timein') {
+    timeOut.value = selectedTime;
+  } else {
+    timeIn.value = selectedTime;
+  }
+};
+
+timeIn.addEventListener('change', synchronizationTime);
+timeOut.addEventListener('change', synchronizationTime);

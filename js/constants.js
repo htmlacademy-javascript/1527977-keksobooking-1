@@ -24,12 +24,30 @@ export const Header = {
 };
 
 export const MIN_PRICE = {
-  BUNGALOW: 0,
-  FLAT: 1000,
-  HOTEL: 3000,
-  HOUSE: 5000,
-  PALACE: 10000,
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000,
 };
+
+export const TIME = [
+  {
+    value: '12:00',
+    timein: 'После 12',
+    timeout: 'Выезд до 12',
+  },
+  {
+    value: '13:00',
+    timein: 'После 13',
+    timeout: 'Выезд до 13',
+  },
+  {
+    value: '14:00',
+    timein: 'После 14',
+    timeout: 'Выезд до 14',
+  },
+];
 
 export const ButtonStatus = {
   DEFAULT: 'Опубликовать',
