@@ -77,8 +77,11 @@ buttonReset.addEventListener('click', (evt) => {
   address.value = addressValueSrart;
 });
 
+price.placeholder = MIN_PRICE[typeHousing.value];
+
 typeHousing.addEventListener('change', () => {
   price.placeholder = MIN_PRICE[typeHousing.value];
+  price.value = '';
 });
 
 const synchronizationTime = (evt) => {
