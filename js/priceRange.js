@@ -5,7 +5,7 @@ const valueElement = document.querySelector('#price');
 
 valueElement.value = START_PRICE;
 
-noUiSlider.create(sliderElement, {
+const slider = noUiSlider.create(sliderElement, {
   range: {
     min: 0,
     max: 100000,
@@ -16,4 +16,8 @@ noUiSlider.create(sliderElement, {
 
 sliderElement.noUiSlider.on('update', () => {
   valueElement.value = sliderElement.noUiSlider.get();
+});
+
+valueElement.addEventListener('change', () => {
+  slider.set(valueElement.value);
 });
