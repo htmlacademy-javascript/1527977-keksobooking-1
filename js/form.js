@@ -4,6 +4,7 @@ import { StartAddress, SIGN_RAUND, FILE_TYPES, ButtonStatus, MIN_PRICE } from '.
 import { pristine } from './validation.js';
 import { getNumber } from './util.js';
 import { restartMap } from './map.js';
+import './priceRange.js';
 
 const form = document.querySelector('.ad-form');
 const address = form.querySelector('#address');

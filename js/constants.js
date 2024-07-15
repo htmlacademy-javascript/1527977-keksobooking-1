@@ -1,4 +1,5 @@
 export const SIGN_RAUND = 5;
+export const START_PRICE = 1000;
 export const MAX_PRICE = 100000;
 export const MAX_MARKERS = 10;
 export const BASE_URL = 'https://28.javascript.htmlacademy.pro/keksobooking';
