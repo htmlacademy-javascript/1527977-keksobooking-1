@@ -27,7 +27,6 @@ const showSuccessNotice = () => {
   document.body.append(successNotice);
   document.body.addEventListener('keydown', onEscDown);
   document.body.addEventListener('click', onBodyClick);
-  successNotice.querySelector('.success__button').addEventListener('click', hideMessage);
 };
 
 const showErrorNotice = () => {

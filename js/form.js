@@ -3,7 +3,7 @@ import { showSuccessNotice, showErrorNotice } from './notice.js';
 import { StartAddress, SIGN_RAUND, FILE_TYPES, ButtonStatus, MIN_PRICE } from './constants.js';
 import { pristine } from './validation.js';
 import { getNumber } from './util.js';
-import { mainMarker } from './map.js';
+import { restartMap } from './map.js';
 
 const form = document.querySelector('.ad-form');
 const address = form.querySelector('#address');
@@ -21,6 +21,10 @@ const timeOut = form.querySelector('#timeout');
 address.readOnly = true;
 
 const addressValueSrart = `${getNumber(StartAddress.LAT, SIGN_RAUND)}, ${getNumber(StartAddress.LNG, SIGN_RAUND)}`;
+
+const pricePlaceholderStart = MIN_PRICE[typeHousing.value];
+
+price.placeholder = pricePlaceholderStart;
 
 address.value = addressValueSrart;
 
@@ -44,9 +48,16 @@ uploadImages.addEventListener('change', () => {
   renderPhoto(uploadImages, imgImages);
 });
 
-const success = () => {
+const clearForm = () => {
   form.reset();
+  restartMap();
+  address.value = addressValueSrart;
+  price.placeholder = pricePlaceholderStart;
+};
+
+const success = () => {
   showSuccessNotice();
+  clearForm();
 };
 
 const error = () => {
@@ -69,12 +80,7 @@ form.addEventListener('submit', async (evt) => {
 
 buttonReset.addEventListener('click', (evt) => {
   evt.preventDefault();
-  form.reset();
-  mainMarker.setLatLng({
-    lat: StartAddress.LAT,
-    lng: StartAddress.LNG,
-  });
-  address.value = addressValueSrart;
+  clearForm();
 });
 
 price.placeholder = MIN_PRICE[typeHousing.value];

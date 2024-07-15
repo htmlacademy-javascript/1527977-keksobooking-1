@@ -6,8 +6,8 @@ const address = document.querySelector('#address');
 
 const map = L.map('map-canvas')
   .setView({
-    lat: 35.681729,
-    lng: 139.753927,
+    lat: StartAddress.LAT,
+    lng: StartAddress.LNG,
   }, 12);
 
 L.tileLayer(
@@ -79,4 +79,15 @@ const createMarker = (card) => {
 
 const clearMarkers = () => markerGroup.clearLayers();
 
-export { getMap, mainMarker, createMarker, clearMarkers };
+const restartMap = () => {
+  map.setView({
+    lat: StartAddress.LAT,
+    lng: StartAddress.LNG,
+  }, 12);
+  mainMarker.setLatLng({
+    lat: StartAddress.LAT,
+    lng: StartAddress.LNG,
+  });
+};
+
+export { getMap, createMarker, clearMarkers, restartMap };
